@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add a Book</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h1><%= book ? 'Edit Book' : 'Add a New Book' %></h1>
+
+    <form action="<%= book ? '/edit/' + book.id : '/add' %>" method="POST">
+        <label>Title:</label>
+        <input type="text" name="title" value="<%= book ? book.title : '' %>" required>
+    
+        <label>Author:</label>
+        <input type="text" name="author" value="<%= book ? book.author : '' %>" required>
+    
+        <label>Rating (1-10):</label>
+        <input type="number" name="rating" min="1" max="10" value="<%= book ? book.rating : '' %>" required>
+    
+        <label>Date Read:</label>
+        <input type="date" name="date_read" value="<%= book ? book.date_read.toISOString().split('T')[0] : '' %>">
+    
+        <label>ISBN (for cover image):</label>
+        <input type="text" name="isbn" value="<%= book ? book.isbn : '' %>">
+
+        <label>Pages:</label>
+        <input type="number" name="pages" placeholder="e.g. 320">
+
+        <div class="form-group">
+            <label>
+                <input type="checkbox" name="would_read_again" id="would_read_again_add" value="true"><strong>Would Read Again?</strong>
+            </label>
+        </div>              
+    
+        <label>Notes:</label>
+        <textarea name="notes" rows="5"><%= book ? book.notes : '' %></textarea>
+    
+        <button type="submit"><%= book ? '💾 Save Changes' : '➕ Add Book' %></button>
+    </form>
+    
+    <p><a href="/">← Back to Home</a></p>    
+</body>
+</html>

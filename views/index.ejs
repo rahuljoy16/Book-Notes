@@ -1,0 +1,163 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Notes</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <section class="hero">
+        <h1>Rahul Joy's - Book Notes</h1>
+        <p class="book-meta">A personal collection of notes, takeaways & reflections from books I’ve read.</p>
+    </section>
+    <hr class="section-divider">
+  <!-- <p>
+    <h2>Sort by:</h2>
+    <a href="/?sort=title">🅰️ Title</a> |
+    <a href="/?sort=rating">⭐ Rating</a> |
+    <a href="/?sort=date_read">📅 Date Read</a>
+  </p>
+  <br><br> -->
+    <% if (topBooks && topBooks.length > 0) { %>
+        <h2>📈 Top Rated Books</h2>
+        <% if (topBooks.length === 0) { %>
+            <p>No top-rated books yet.</p>
+        <% } else { %>
+            <div class="book-grid">
+                <% topBooks.forEach(book => { %>
+                    <div class="book">
+                        <% if (book.cover_url) { %>
+                            <img src="<%= book.cover_url %>" alt="Cover for <%= book.title %>">
+                        <% } %>
+                        <h3><%= book.title %></h3>
+                        <p class="book-meta">Rating: <%= book.rating %>/10</p>
+                    </div>
+                <% }) %>
+            </div>
+        <% } %>
+    <% } %>
+
+    <% if (recentBooks && recentBooks.length > 0) { %>
+        <h2>🆕 Recently Read</h2>
+        <% if (recentBooks.length === 0) { %>
+            <p>No recent reads yet.</p>
+        <% } else { %>
+            <div class="book-grid">
+                <% recentBooks.forEach(book => { %>
+                <div class="book">
+                    <% if (book.cover_url) { %>
+                        <img src="<%= book.cover_url %>" alt="Cover for <%= book.title %>">
+                    <% } %>
+                    <h3><%= book.title %></h3>
+                    <p class="book-meta">Read on: <%= book.date_read.toDateString() %></p>
+                </div>
+                <% }) %>
+            </div>
+        <% } %>
+    <% } %> 
+
+    <div class="search-filter">
+        <form action="/filter" method="GET" class="filter-form">
+            <input type="text" name="search" placeholder="Search by title or author" value="<%= typeof search !== 'undefined' ? search : '' %>">
+    
+            <select name="rating">
+                <option value="">All Ratings</option>
+                <option value="10">Only 10/10</option>
+                <option value="9">9 and above</option>
+                <option value="8">8 and above</option>
+            </select>
+    
+            <button type="submit">Filter</button>
+        </form>
+    </div>
+
+    <h2>📚 All Books</h2>
+    <% books.forEach(book => { %>
+    <!-- full display block -->
+    <% }) %>
+
+    <!-- <a href="/add">➕ Add a New Book</a> -->
+    <br><br>
+    <ul>
+        <% books.forEach(book => { %>
+            <div class="book">
+                <% if (book.cover_url) { %>
+                    <img src="<%= book.cover_url %>" alt="Cover image for <%= book.title %>">
+                <% } %>
+      
+                <h2><%= book.title %></h2>
+                <button class="quick-view-btn" data-id="<%= book.id %>">📖 Quick View</button>
+
+                <p class="book-meta">
+                    <strong>Author:</strong> <%= book.author %> |
+                    <strong>Rating:</strong> <%= book.rating %>/10 |
+                    <strong>Read on:</strong> <%= book.date_read.toDateString() %>
+                </p>
+
+                <% if (book.pages) { %>
+                    <p class="book-meta"><strong>Pages:</strong> <%= book.pages %> (~<%= Math.round(book.pages / 50) %>h read)</p>
+                <% } %>
+          
+                <p class="book-meta">
+                    <strong>Would Read Again:</strong>
+                    <%= book.would_read_again ? '✔️' : '❌' %>
+                </p>
+          
+                <!-- <span style="color: green">✔️</span> or <span style="color: red">❌</span> -->
+      
+                <p><%= book.notes %></p>
+      
+                <!-- <div class="book-actions">
+                    <a href="/edit/<%= book.id %>">✏️ Edit</a>
+      
+                    <form action="/delete/<%= book.id %>" method="POST" style="display:inline;">
+                        <button type="submit" onclick="return confirm('Are you sure?')">🗑 Delete</button>
+                    </form>
+                </div> -->
+            </div>
+        <% }) %>
+    </ul>
+    <div id="modal-overlay" class="modal-overlay hidden">
+        <div class="modal">
+            <span id="modal-close">&times;</span>
+            <div id="modal-content">
+                <p>Loading...</p>
+            </div>
+        </div>
+    </div>  
+    <div class="about-box">
+        <h3>📖 About This Site</h3>
+        <p>
+            Book Notes is a minimalist space to track what I read and remember what mattered. 
+            Inspired by <a href="https://sive.rs/book" target="_blank">Derek Sivers’ book notes</a>, 
+            this project helps me reflect, rate, and record key ideas.
+        </p>
+        <p>
+            <a href="/about" class="about-link">Learn more →</a>
+        </p>
+    </div>  
+    <script>
+        document.querySelectorAll('.quick-view-btn').forEach(button => {
+            button.addEventListener('click', async () => {
+                const id = button.getAttribute('data-id');
+                const res = await fetch(`/books/${id}/notes`);
+                const html = await res.text();
+  
+                document.getElementById('modal-content').innerHTML = html;
+                document.getElementById('modal-overlay').classList.remove('hidden');
+            });
+        });
+  
+            document.getElementById('modal-close').addEventListener('click', () => {
+            document.getElementById('modal-overlay').classList.add('hidden');
+        });
+  
+        // Optional: close modal on outside click
+        document.getElementById('modal-overlay').addEventListener('click', e => {
+            if (e.target.id === 'modal-overlay') {
+            document.getElementById('modal-overlay').classList.add('hidden');
+            }
+        });
+    </script>  
+</body>
+</html>

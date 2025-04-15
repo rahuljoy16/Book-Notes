@@ -1,0 +1,378 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #ffffff;
+    color: #111;
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 0 20px;
+    line-height: 1.7;
+}
+
+.hero {
+    max-width: 800px;
+    margin: 2em auto;
+    padding: 1.5em;
+    text-align: center;
+}
+  
+.hero h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 0.3em;
+    background: linear-gradient(90deg, #6C63FF, #FF5722);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+  
+.hero p {
+    font-size: 1.2em;
+    color: #444;
+    line-height: 1.6;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.section-divider {
+    border: none;
+    height: 1px;
+    background-color: #eee;
+    margin: 2em auto;
+    width: 80%;
+}  
+  
+h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5em;
+}
+  
+h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.2em;
+}
+  
+p {
+    margin: 0.4em 0;
+}
+  
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+  
+a:hover {
+    text-decoration: underline;
+}
+  
+.book {
+    overflow: auto;
+    margin-top: 1.2em;
+    margin-bottom: 3em;
+    padding-bottom: 2em;
+    border-bottom: 1px solid #eee;
+}
+  
+.book img {
+    float: right;
+    margin-left: 20px;
+    width: 110px;
+    height: auto;
+    border-radius: 4px;
+}
+  
+.book-meta {
+    color: #666;
+    font-size: 0.9em;
+}
+  
+.book-actions {
+    margin-top: 10px;
+}
+  
+.book-actions a,
+.book-actions form {
+    display: inline;
+    margin-right: 10px;
+}
+
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5em;
+    margin-bottom: 2em;
+}  
+  
+button {
+    background: none;
+    border: none;
+    color: #0066cc;
+    font: inherit;
+    cursor: pointer;
+    padding: 0;
+}
+  
+button:hover {
+    text-decoration: underline;
+}
+  
+form {
+    margin-top: 1em;
+}
+  
+input,
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 0.5em 0 1em 0;
+    font-size: 1em;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+  
+textarea {
+    resize: vertical;
+}
+  
+label {
+    font-weight: bold;
+    margin-top: 1em;
+    display: block;
+}
+
+.search-filter {
+    max-width: 800px;
+    margin: 2em auto;
+    padding: 1em 2em;
+    background-color: #fdfdfd;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.04);
+    text-align: center;
+}
+  
+.search-filter form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+}
+  
+.search-filter input[type="text"],
+.search-filter select {
+    padding: 0.6em 1em;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+    min-width: 200px;
+    max-width: 100%;
+}
+  
+.search-filter button {
+    padding: 0.6em 1.2em;
+    background-color: #0066cc;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+  
+.search-filter button:hover {
+    background-color: #004ea2;
+}  
+
+.form-group {
+    margin-bottom: 1.2em;
+}
+  
+.form-group label {
+    display: block;
+    font-weight: 500;
+    color: #333;
+}
+  
+.form-group input[type="checkbox"] {
+    margin-right: 0.5em;
+    transform: scale(1.1);
+}
+  
+.filter-form {
+    display: flex;
+    gap: 1em;
+    margin: 2em 0;
+    align-items: center;
+    flex-wrap: wrap;
+}
+  
+.filter-form input,
+.filter-form select,
+.filter-form button {
+    padding: 0.5em 0.75em;
+    font-size: 1rem;
+}
+  
+.filter-form input {
+    flex: 1;
+    min-width: 200px;
+}
+  
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+  
+.modal {
+    background: #fff;
+    padding: 2em;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    position: relative;
+}
+  
+#modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+  
+.hidden {
+    display: none;
+}
+  
+.quick-view-btn {
+    margin-top: 0.5em;
+    padding: 0.4em 0.8em;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+.about-container {
+    max-width: 700px;
+    margin: 3em auto;
+    padding: 2em;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+  
+.about-container h1, .about-container h2 {
+    margin-bottom: 1em;
+    font-weight: 600;
+}
+  
+.about-container ul {
+    padding-left: 1.5em;
+    margin: 1em 0;
+}
+  
+.about-container a {
+    color: #0066cc;
+    text-decoration: none;
+}
+  
+.about-container a:hover {
+    text-decoration: underline;
+}  
+
+.site-header {
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 1.5em 0;
+    margin-bottom: 2em;
+}
+  
+.site-header .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+  
+.site-title {
+    margin: 0;
+    font-size: 1.8em;
+    font-weight: 600;
+}
+  
+.site-title a {
+    text-decoration: none;
+    color: #333;
+}
+  
+.nav-links {
+    display: flex;
+    gap: 1.5em;
+}
+  
+.nav-links a {
+    text-decoration: none;
+    color: #0066cc;
+    font-weight: 500;
+    font-size: 1rem;
+}
+  
+.nav-links a:hover {
+    text-decoration: underline;
+}
+  
+.about-box {
+    background-color: #fdfdfd;
+    border: 1px solid #eee;
+    padding: 1.5em 2em;
+    margin: 2em auto;
+    max-width: 750px;
+    border-radius: 8px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.04);
+}
+  
+.about-box h3 {
+    margin-top: 0;
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #444;
+}
+  
+.about-box p {
+    line-height: 1.6;
+    color: #555;
+}
+  
+.about-box a {
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: 500;
+}
+  
+.about-box a:hover {
+    text-decoration: underline;
+}  
+
+@media (max-width: 600px) {
+    .book img {
+        float: none;
+        display: block;
+        margin: 10px 0;
+        width: 100px;
+    }
+}
+  
