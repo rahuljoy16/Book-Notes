@@ -37,3 +37,9 @@ This project allows me to store, organize, and display book titles, ratings, not
 git clone https://github.com/YOUR_USERNAME/book-notes.git
 cd book-notes
 npm install
+
+Create a new .env file:
+DATABASE_URL=your_postgres_connection_string
+
+Then run:
+nodemon index.js
