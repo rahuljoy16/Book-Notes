@@ -22,8 +22,9 @@ body {
     background: linear-gradient(90deg, #6C63FF, #FF5722);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
-  
+
 .hero p {
     font-size: 1.2em;
     color: #444;
