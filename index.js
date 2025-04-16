@@ -10,6 +10,9 @@ const bookRoutes = require('./routes/books');
 // PostgreSQL pool config
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
 });
 
 // Middleware
